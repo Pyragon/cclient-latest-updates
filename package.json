@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pyragon/cclient-latest-updates/issues"
   },
-  "homepage": "https://github.com/pyragon/cclient-latest-updates#readme"
+  "homepage": "https://github.com/pyragon/cclient-latest-updates#readme",
+  "dependencies": {
+    "dateformat": "^3.0.3"
+  }
 }

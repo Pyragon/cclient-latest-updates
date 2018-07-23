@@ -1,0 +1,9 @@
+{
+  "esversion": 6,
+  "browser": true,
+  "node": true,
+  "validthis": true,
+  "quotmark": "single",
+  "globals": {
+  }
+}
