@@ -76,7 +76,7 @@ var latest = function() {
           return;
         }
         commits = response.commits;
-        ui.getPlugins().updateDom('cclient-latest-updates');
+        ui.getWidgets().updateDom('cclient-latest-updates');
       });
     },
 
