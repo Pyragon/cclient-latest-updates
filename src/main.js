@@ -76,12 +76,12 @@ var latest = function() {
           return;
         }
         commits = response.commits;
-        ui.getPlugins().updateDom('cclient-latest-updates');
+        ui.getWidgets().updateDom('cclient-widget-latest-updates');
       });
     },
 
     getName: () => {
-      return 'cclient-latest-updates';
+      return 'cclient-widget-latest-updates';
     },
 
     getDelay: () => {
