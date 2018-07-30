@@ -1,5 +1,5 @@
 {
-  "name": "cclient-latest-updates",
+  "name": "cclient-widget-latest-updates",
   "version": "1.0.0",
   "description": "Plugin for the Cryogen Client to load latest updates for Cryogen projects.",
   "main": "src/main.js",
