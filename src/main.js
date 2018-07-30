@@ -1,7 +1,11 @@
 const dateFormat = require('dateformat');
+const shell = require('electron').shell;
 
-var latest = function(main) {
+function clickedUpdate() {
+  shell.openExternal($(this).data('url'));
+}
 
+var latest = function() {
   var commits = [];
 
   return {
@@ -10,52 +14,50 @@ var latest = function(main) {
 
     getDom: () => {
 
-      var container = document.createElement('div');
+      var container = $('<div></div>');
 
-      var title = document.createElement('p');
-      title.id = 'updates-title';
-      title.innerHTML = 'Latest Updates';
+      var title = $('<p>Latest Updates</p>');
+      title.prop('id', 'updates-title');
 
-      container.appendChild(title);
+      container.append(title);
 
-      if (!commits || commits.length == 0) {
-        var loader = document.createElement('div');
-        loader.id = 'updates-loader';
-        var spinner = document.createElement('i');
-        spinner.className = 'fa fa-spinner fa-spin';
+      if (commits.length == 0) {
+        var loader = $('<div></div>');
+        loader.prop('id', 'latest-loader');
 
-        loader.appendChild(spinner);
-        container.appendChild(loader);
+        var spinner = $('<i></i>');
+        spinner.addClass('fa fa-spinner fa-spin');
+
+        loader.append(spinner);
+        container.append(loader);
         return container;
       }
-
       for (var i = 0; i < commits.length; i++) {
         var commit = commits[i];
 
-        var div = document.createElement('div');
-        div.className = 'update';
+        var div = $('<div></div>');
+        div.addClass('update');
 
-        var update_title = document.createElement('p');
-        update_title.className = 'update-title';
-        var titleline = commit.commit_message;
-        if (titleline.length > 33) {
-          update_title.title = commit.commit_message;
-          titleline = titleline.substring(0, 33);
-          titleline += '...';
+        var updateTitle = $('<p></p>');
+        var message = commit.commit_message;
+        if (message.length > 40) {
+          updateTitle.prop('title', message);
+          message = message.substring(0, 40);
+          message += '...';
         }
-        update_title.innerHTML = titleline;
+        updateTitle.html(message);
+        updateTitle.addClass('update-title');
 
-        var author = document.createElement('p');
-        author.className = 'update-author';
-        var authorline = 'Posted ';
-        authorline += dateFormat(new Date(commit.date), 'mmmm dS, yyyy');
-        authorline += ' By ' + commit.author;
-        author.innerHTML = authorline;
+        var updateAuthor = $(`<p>Commited ${dateFormat(new Date(commit.date), 'mmmm dS, yyyy')} By ${commit.author}.</p>`);
+        updateAuthor.addClass('update-author');
 
-        div.appendChild(update_title);
-        div.appendChild(author);
+        div.append(updateTitle);
+        div.append(updateAuthor);
 
-        container.appendChild(div);
+        div.data('url', commit.url);
+        div.click(clickedUpdate);
+
+        container.append(div);
       }
 
       return container;
@@ -63,8 +65,7 @@ var latest = function(main) {
     },
 
     update: () => {
-      var plugin = this;
-      main.request({
+      request({
         path: '/updates',
         method: 'GET'
       }, {
@@ -75,7 +76,7 @@ var latest = function(main) {
           return;
         }
         commits = response.commits;
-        main.getPluginManager().updateDom('cclient-latest-updates');
+        ui.getPlugins().updateDom('cclient-latest-updates');
       });
     },
 
