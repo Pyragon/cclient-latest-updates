@@ -1,5 +1,5 @@
 {
-  "name": "cclient-latest-updates",
+  "name": "cclient-widget-latest-updates",
   "version": "1.0.0",
   "description": "Plugin for the Cryogen Client to load latest updates for Cryogen projects.",
   "main": "src/main.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pyragon/cclient-latest-updates.git"
+    "url": "git+https://github.com/pyragon/cclient-widget-latest-updates.git"
   },
   "author": "Pyragon",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pyragon/cclient-latest-updates/issues"
+    "url": "https://github.com/pyragon/cclient-widget-latest-updates/issues"
   },
-  "homepage": "https://github.com/pyragon/cclient-latest-updates#readme",
+  "homepage": "https://github.com/pyragon/cclient-widget-latest-updates#readme",
   "dependencies": {
     "dateformat": "^3.0.3"
   }
