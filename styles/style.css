@@ -13,6 +13,13 @@
   height: 20px;
 }
 
+#updates-loading-text {
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  color: white;
+}
+
 .update {
   clear: both;
   border: 1px solid #111;
