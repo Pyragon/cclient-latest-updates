@@ -15,6 +15,18 @@
     "bugs": {
         "url": "https://github.com/pyragon/cclient-widget-latest-updates/issues"
     },
+    "defaultConfig": {
+        "limit": {
+            "type": "Integer",
+            "value": 4,
+            "description": "Number of updates to display"
+        },
+        "useContextMenu": {
+            "type": "Boolean",
+            "value": true,
+            "description": "Whether or not to add a context menu to the update items"
+        }
+    },
     "homepage": "https://github.com/pyragon/cclient-widget-latest-updates#readme",
     "dependencies": {
         "dateformat": "^3.0.3"

@@ -8,27 +8,31 @@ function clickedUpdate() {
 var latest = function() {
     var commits = [];
 
+    var config;
+
     return {
 
         init: (config) => {
+            this.config = config;
 
-            context.addMenuItems({
-                selector: '.update',
-                items: [{
-                    name: 'View Update',
-                    icon: 'fas fa-file-code',
-                    callback: (clickEvent, e) => {
-                        var target = $(clickEvent.target);
-                        shell.openExternal(target.closest('.update').data('url'));
-                    }
-                }, {
-                    name: 'View Repository',
-                    icon: 'fas fa-code',
-                    callback: () => {
-                        shell.openExternal('http://github.com/Pyragon/cryogen-client');
-                    }
-                }]
-            });
+            if (config.useContextMenu)
+                context.addMenuItems({
+                    selector: '.update',
+                    items: [{
+                        name: 'View Update',
+                        icon: 'fas fa-file-code',
+                        callback: (clickEvent, e) => {
+                            var target = $(clickEvent.target);
+                            shell.openExternal(target.closest('.update').data('url'));
+                        }
+                    }, {
+                        name: 'View Repository',
+                        icon: 'fas fa-code',
+                        callback: () => {
+                            shell.openExternal('http://github.com/Pyragon/cryogen-client');
+                        }
+                    }]
+                });
 
         },
 
@@ -94,7 +98,7 @@ var latest = function() {
                 path: '/updates',
                 method: 'GET'
             }, {
-                limit: 4
+                limit: this.config.limit.value
             }, (response) => {
                 if (response.error) {
                     $('#updates-loading-text').html('Error loading. Retrying...');
