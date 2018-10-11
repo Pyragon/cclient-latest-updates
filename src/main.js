@@ -14,8 +14,7 @@ var latest = function() {
 
         init: (config) => {
             this.config = config;
-
-            if (config.useContextMenu == true)
+            if (config.useContextMenu !== undefined && config.useContextMenu.value == true)
                 context.addMenuItems({
                     selector: '.update',
                     items: [{
